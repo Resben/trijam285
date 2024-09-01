@@ -207,6 +207,7 @@ bone_angle = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="Hip"]
 position = Vector2(0, -192)
+limit_top = 0
 
 [node name="PB_Hip" type="PhysicalBone2D" parent="."]
 position = Vector2(0, 48)

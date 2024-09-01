@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://uj06veavjxe0"]
+[gd_scene load_steps=10 format=3 uid="uid://uj06veavjxe0"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_gxkpx"]
 [ext_resource type="PackedScene" uid="uid://i5v4kcgwf257" path="res://scenes/player.tscn" id="2_3wlac"]
 [ext_resource type="PackedScene" uid="uid://vje1eler1a26" path="res://scenes/ui.tscn" id="2_iy48f"]
+[ext_resource type="Texture2D" uid="uid://s0nhw3pux6n6" path="res://assets/back4.png" id="3_v1a2p"]
+[ext_resource type="Texture2D" uid="uid://dpqffiykmnont" path="res://assets/bak3.png" id="4_5dqxb"]
+[ext_resource type="Texture2D" uid="uid://cm8qc3ss8ybud" path="res://assets/front.png" id="4_jmpdl"]
+[ext_resource type="Texture2D" uid="uid://duehnd6o6ll2m" path="res://assets/back2.png" id="5_wa660"]
+[ext_resource type="Texture2D" uid="uid://cyyeq27dijb65" path="res://assets/back1.png" id="6_2ha22"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fr72"]
 size = Vector2(4947, 761)
@@ -14,13 +19,40 @@ script = ExtResource("1_gxkpx")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
+[node name="Outside3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(2400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Outside3"]
+texture = ExtResource("3_v1a2p")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Outside3"]
+texture = ExtResource("4_5dqxb")
+centered = false
+
+[node name="Outside2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(2400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Outside2"]
+texture = ExtResource("5_wa660")
+centered = false
+
+[node name="Outside1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(2400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Outside1"]
+texture = ExtResource("6_2ha22")
+centered = false
+
 [node name="Gallery" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(2400, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Gallery"]
-
-[node name="Outside" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Outside"]
+texture = ExtResource("4_jmpdl")
+centered = false
 
 [node name="Ground" type="StaticBody2D" parent="."]
 collision_layer = 2
