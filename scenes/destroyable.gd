@@ -1,9 +1,6 @@
 extends RigidBody2D
 
-@export var brokensprite : Texture2D
-@export var sprite : Texture2D
-@export var painted : Texture2D
-@export var painted_and_broken : Texture2D
+@export var data : ItemData
 
 var health = 5
 var is_painted = false
@@ -29,7 +26,6 @@ func _on_body_entered(body : Node2D):
 		health -= 1
 		if health == 0:
 			if !is_broken:
-				$CollisionShape2D.disabled = true
 				collision_layer = 4
 				collision_mask = 2
 				is_broken = true
@@ -38,10 +34,10 @@ func _on_body_entered(body : Node2D):
 
 func change_texture():
 	if is_broken && is_painted:
-		$Sprite2D.texture = painted_and_broken
+		$Sprite2D.texture = data.broken_painted
 	elif is_painted:
-		$Sprite2D.texture = painted
+		$Sprite2D.texture = data.painted
 	elif is_broken:
-		$Sprite2D.texture = brokensprite
+		$Sprite2D.texture = data.broken
 	else:
-		$Sprite2D.texture = sprite
+		$Sprite2D.texture = data.normal

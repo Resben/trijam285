@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://uj06veavjxe0"]
+[gd_scene load_steps=5 format=3 uid="uid://uj06veavjxe0"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_gxkpx"]
 [ext_resource type="PackedScene" uid="uid://i5v4kcgwf257" path="res://scenes/player.tscn" id="2_3wlac"]
 [ext_resource type="PackedScene" uid="uid://vje1eler1a26" path="res://scenes/ui.tscn" id="2_iy48f"]
-[ext_resource type="PackedScene" uid="uid://dacinxy0g5s4f" path="res://scenes/destroyable.tscn" id="4_0pa8s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fr72"]
 size = Vector2(4947, 761)
@@ -32,6 +31,3 @@ shape = SubResource("RectangleShape2D_5fr72")
 
 [node name="Player" parent="." instance=ExtResource("2_3wlac")]
 position = Vector2(120, 480)
-
-[node name="Destroyable" parent="." instance=ExtResource("4_0pa8s")]
-position = Vector2(592, 400)

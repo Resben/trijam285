@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://cqacpg0oidpvx"]
+
+[ext_resource type="Script" path="res://scenes/breakabledata.gd" id="1_7caf1"]
+[ext_resource type="Texture2D" uid="uid://cvdg34yuw2y1w" path="res://assets/p1/painting1-broken.png" id="1_xbi33"]
+[ext_resource type="Texture2D" uid="uid://qpxy52aoxqtc" path="res://assets/p1/painting1-painted-broken.png" id="2_q0ip3"]
+[ext_resource type="Texture2D" uid="uid://cg5frwtiwkppt" path="res://assets/p1/painting1.png" id="3_xhak7"]
+[ext_resource type="Texture2D" uid="uid://cbyjp43s8682t" path="res://assets/p1/painting1-painted.png" id="4_as7sq"]
+
+[resource]
+script = ExtResource("1_7caf1")
+normal = ExtResource("3_xhak7")
+broken = ExtResource("1_xbi33")
+painted = ExtResource("4_as7sq")
+broken_painted = ExtResource("2_q0ip3")

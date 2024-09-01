@@ -6,6 +6,11 @@ var distance_to_next_spawn = 0
 
 var destroyable = preload("res://scenes/destroyable.tscn") as PackedScene
 
+var items = [
+	preload("res://resources/p1.tres"),
+	preload("res://resources/p2.tres")
+]
+
 func _ready()->void:
 	current_distance = $Player.global_position.x
 	
@@ -54,6 +59,10 @@ func _process(delta):
 		current_distance = $Player/Hip.global_position.x
 		if distance_to_next_spawn < current_distance:
 			var o = destroyable.instantiate() as RigidBody2D
+			
+			var rand_item = randi_range(0, items.size() - 1)
+			o.data = items[rand_item]
+			
 			add_child(o)
 			o.global_position = Vector2($Player/Hip.global_position.x + 1400, randi_range(250, 600))
 			distance_to_next_spawn = current_distance + randi_range(150, 600)
