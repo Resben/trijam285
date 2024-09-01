@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://vje1eler1a26"]
+
+[ext_resource type="Script" path="res://scenes/ui.gd" id="1_ate17"]
+[ext_resource type="FontFile" uid="uid://bsebu247j4s1i" path="res://assets/pixelFont.ttf" id="1_tpeng"]
+
+[sub_resource type="Theme" id="Theme_si7xp"]
+default_font = ExtResource("1_tpeng")
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ndjm"]
+font_size = 60
+font_color = Color(0.658911, 1.9132e-06, 5.29438e-07, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0fw5l"]
+font_size = 60
+font_color = Color(0.658824, 0, 0, 1)
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_ate17")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_si7xp")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_top = 16.0
+offset_right = -24.0
+offset_bottom = 39.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 60
+text = "-$0"
+label_settings = SubResource("LabelSettings_7ndjm")
+
+[node name="Label2" type="Label" parent="Control"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -129.0
+offset_top = 96.0
+offset_right = -24.0
+offset_bottom = 149.0
+grow_horizontal = 0
+text = "-$0"
+label_settings = SubResource("LabelSettings_0fw5l")

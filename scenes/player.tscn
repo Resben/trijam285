@@ -1,0 +1,239 @@
+[gd_scene load_steps=15 format=3 uid="uid://i5v4kcgwf257"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_ytp0x"]
+
+[sub_resource type="SkeletonModification2DPhysicalBones" id="SkeletonModification2DPhysicalBones_lxs2s"]
+physical_bone_chain_length = 3
+fetch_bones = null
+joint_0_nodepath = NodePath("PB_Hip")
+joint_1_nodepath = NodePath("PB_Hip/PB_LeftTigh")
+joint_2_nodepath = NodePath("PB_Hip/PB_RightThigh")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_8rmjk"]
+target_nodepath = NodePath("Target")
+joint_one_bone_idx = 4
+joint_one_bone2d_node = NodePath("Hip/Back/LeftArm")
+joint_two_bone_idx = 5
+joint_two_bone2d_node = NodePath("Hip/Back/LeftArm/LeftUpperArm")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_60o6t"]
+target_nodepath = NodePath("Target")
+joint_one_bone_idx = 6
+joint_one_bone2d_node = NodePath("Hip/Back/RightArm")
+joint_two_bone_idx = 7
+joint_two_bone2d_node = NodePath("Hip/Back/RightArm/RightUpperArm")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_eqpqr"]
+target_nodepath = NodePath("Target")
+joint_one_bone_idx = 7
+joint_one_bone2d_node = NodePath("Hip/Back/RightArm/RightUpperArm")
+joint_two_bone_idx = 8
+joint_two_bone2d_node = NodePath("Hip/Back/RightArm/RightUpperArm/Mop")
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_vfcc6"]
+modification_count = 4
+modifications/0 = SubResource("SkeletonModification2DPhysicalBones_lxs2s")
+modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_8rmjk")
+modifications/2 = SubResource("SkeletonModification2DTwoBoneIK_60o6t")
+modifications/3 = SubResource("SkeletonModification2DTwoBoneIK_eqpqr")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hpu8s"]
+size = Vector2(48, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4sbc"]
+size = Vector2(52, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ls8fe"]
+size = Vector2(50, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_frobt"]
+size = Vector2(49, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4616f"]
+size = Vector2(86, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbv5t"]
+size = Vector2(20, 104)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3tt0w"]
+height = 102.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d3dyq"]
+height = 102.0
+
+[node name="Player" type="Skeleton2D"]
+modification_stack = SubResource("SkeletonModificationStack2D_vfcc6")
+script = ExtResource("1_ytp0x")
+
+[node name="Hip" type="Bone2D" parent="."]
+position = Vector2(0, 48)
+rest = Transform2D(1, 0, 0, 1, 0, 260)
+
+[node name="HipPolygon" type="Polygon2D" parent="Hip"]
+position = Vector2(0, -50)
+polygon = PackedVector2Array(-10, -50, 10, -50, 10, 50, -10, 50)
+
+[node name="LeftThigh" type="Bone2D" parent="Hip"]
+position = Vector2(-28, 13)
+rest = Transform2D(1, 0, 0, 1, -28, 13)
+auto_calculate_length_and_angle = false
+length = 100.0
+bone_angle = 90.0
+
+[node name="LeftThighPolygon" type="Polygon2D" parent="Hip/LeftThigh"]
+position = Vector2(0, 50)
+polygon = PackedVector2Array(-10, -50, 10, -50, 10, 50, -10, 50)
+
+[node name="RightThigh" type="Bone2D" parent="Hip"]
+position = Vector2(28, 13)
+rest = Transform2D(1, 0, 0, 1, 28, 13)
+auto_calculate_length_and_angle = false
+length = 100.0
+bone_angle = 90.0
+
+[node name="RightThighPolygon" type="Polygon2D" parent="Hip/RightThigh"]
+position = Vector2(0, 50)
+polygon = PackedVector2Array(-10, -50, 10, -50, 10, 50, -10, 50)
+
+[node name="Back" type="Bone2D" parent="Hip"]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+
+[node name="LeftArm" type="Bone2D" parent="Hip/Back"]
+position = Vector2(-16, -94)
+rest = Transform2D(1, 0, 0, 1, -16, -94)
+auto_calculate_length_and_angle = false
+length = 80.0
+bone_angle = 180.0
+
+[node name="Polygon2D" type="Polygon2D" parent="Hip/Back/LeftArm"]
+position = Vector2(0, -2)
+polygon = PackedVector2Array(3, -3, 3, 9, -45, 9, -45, -3)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Hip/Back/LeftArm"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hip/Back/LeftArm/StaticBody2D"]
+position = Vector2(-21, 0.5)
+shape = SubResource("RectangleShape2D_hpu8s")
+
+[node name="LeftUpperArm" type="Bone2D" parent="Hip/Back/LeftArm"]
+position = Vector2(-48, 0)
+rest = Transform2D(1, 0, 0, 1, -48, 0)
+auto_calculate_length_and_angle = false
+length = 50.0
+bone_angle = 180.0
+
+[node name="Polygon2D" type="Polygon2D" parent="Hip/Back/LeftArm/LeftUpperArm"]
+polygon = PackedVector2Array(0, -5, 0, 7, -52, 7, -52, -6)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Hip/Back/LeftArm/LeftUpperArm"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hip/Back/LeftArm/LeftUpperArm/StaticBody2D"]
+position = Vector2(-26, 0.5)
+shape = SubResource("RectangleShape2D_p4sbc")
+
+[node name="RightArm" type="Bone2D" parent="Hip/Back"]
+position = Vector2(16, -94)
+rest = Transform2D(1, 0, 0, 1, 16, -94)
+auto_calculate_length_and_angle = false
+length = 50.0
+bone_angle = 0.0
+
+[node name="Polygon2D" type="Polygon2D" parent="Hip/Back/RightArm"]
+position = Vector2(91, -2)
+polygon = PackedVector2Array(-44, -4, -44, 9, -94, 9, -94, -4)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Hip/Back/RightArm"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hip/Back/RightArm/StaticBody2D"]
+position = Vector2(22, 0.5)
+shape = SubResource("RectangleShape2D_ls8fe")
+
+[node name="RightUpperArm" type="Bone2D" parent="Hip/Back/RightArm"]
+position = Vector2(48, 0)
+rest = Transform2D(1, 0, 0, 1, 48, 0)
+auto_calculate_length_and_angle = false
+length = 50.0
+bone_angle = 0.0
+
+[node name="Polygon2D" type="Polygon2D" parent="Hip/Back/RightArm/RightUpperArm"]
+polygon = PackedVector2Array(3, -6, 3, 7, 52, 7, 52, -6)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Hip/Back/RightArm/RightUpperArm"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hip/Back/RightArm/RightUpperArm/StaticBody2D"]
+position = Vector2(27.5, 0.5)
+shape = SubResource("RectangleShape2D_frobt")
+
+[node name="Mop" type="Bone2D" parent="Hip/Back/RightArm/RightUpperArm"]
+position = Vector2(56, 0)
+rest = Transform2D(1, 0, 0, 1, 56, 0)
+auto_calculate_length_and_angle = false
+length = 60.0
+bone_angle = 0.0
+
+[node name="Polygon2D" type="Polygon2D" parent="Hip/Back/RightArm/RightUpperArm/Mop"]
+position = Vector2(-58, 0)
+polygon = PackedVector2Array(57, -5, 57, 6, 144, 2)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Hip/Back/RightArm/RightUpperArm/Mop"]
+position = Vector2(-58, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hip/Back/RightArm/RightUpperArm/Mop/StaticBody2D"]
+position = Vector2(100, 0.5)
+shape = SubResource("RectangleShape2D_4616f")
+
+[node name="PB_Hip" type="PhysicalBone2D" parent="."]
+position = Vector2(0, 48)
+collision_mask = 2
+gravity_scale = 0.0
+constant_force = Vector2(0, -5)
+bone2d_nodepath = NodePath(".")
+bone2d_index = 0
+simulate_physics = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PB_Hip"]
+position = Vector2(0, -48)
+shape = SubResource("RectangleShape2D_bbv5t")
+
+[node name="PB_LeftThigh" type="PhysicalBone2D" parent="PB_Hip"]
+position = Vector2(-28, 13)
+collision_mask = 2
+gravity_scale = 0.0
+angular_damp = 1.0
+constant_force = Vector2(0, 25)
+bone2d_nodepath = NodePath("../../Hip/LeftThigh")
+bone2d_index = 1
+simulate_physics = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PB_Hip/PB_LeftThigh"]
+position = Vector2(0, 50)
+shape = SubResource("CapsuleShape2D_3tt0w")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="PB_Hip/PB_LeftThigh"]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+disable_collision = false
+
+[node name="PB_RightThigh" type="PhysicalBone2D" parent="PB_Hip"]
+position = Vector2(28, 13)
+collision_mask = 2
+gravity_scale = 0.0
+angular_damp = 1.0
+constant_force = Vector2(0, 25)
+bone2d_nodepath = NodePath("../../Hip/RightThigh")
+bone2d_index = 2
+simulate_physics = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PB_Hip/PB_RightThigh"]
+position = Vector2(0, 50)
+shape = SubResource("CapsuleShape2D_d3dyq")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="PB_Hip/PB_RightThigh"]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+disable_collision = false
+
+[node name="Target" type="Node2D" parent="."]
+position = Vector2(0, -212)
