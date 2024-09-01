@@ -43,8 +43,6 @@ func _physics_process(delta):
 	var distance = abs(hip.global_position.y - 532)
 	var scale_value = distance / 50 + 1
 	
-	print(hip.global_position.y)
-	
 	if hip.global_position.y > 536:
 		hip.constant_force += Vector2(0, -600) * delta * scale_value
 		left_leg.constant_force += Vector2(0, 75) * delta * scale_value
@@ -65,7 +63,8 @@ func _physics_process(delta):
 		state = "standing up"
 	
 	if last_state != state:
-		print("switched from (" + last_state + ") to (" + state + ")")
+		#print("switched from (" + last_state + ") to (" + state + ")")
+		pass
 
 func rotate_leg(delta):
 		if leg:

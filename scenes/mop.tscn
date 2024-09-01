@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4gwl0cntq6ru"]
+
+[ext_resource type="Script" path="res://scenes/mop.gd" id="1_bf6a1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utly1"]
+size = Vector2(191, 38)
+
+[node name="Mop" type="StaticBody2D"]
+collision_mask = 2
+script = ExtResource("1_bf6a1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(1, -13, -6, 14, 167, 18, 179, -15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(85.5, 1)
+shape = SubResource("RectangleShape2D_utly1")

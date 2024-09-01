@@ -1,6 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://i5v4kcgwf257"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_ytp0x"]
+[ext_resource type="PackedScene" uid="uid://c4gwl0cntq6ru" path="res://scenes/mop.tscn" id="2_miyk6"]
 
 [sub_resource type="SkeletonModification2DPhysicalBones" id="SkeletonModification2DPhysicalBones_lxs2s"]
 physical_bone_chain_length = 3
@@ -48,9 +49,6 @@ size = Vector2(50, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_frobt"]
 size = Vector2(49, 13)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4616f"]
-size = Vector2(86, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbv5t"]
 size = Vector2(20, 104)
@@ -127,6 +125,7 @@ bone_angle = 180.0
 polygon = PackedVector2Array(0, -5, 0, 7, -52, 7, -52, -6)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Hip/Back/LeftArm/LeftUpperArm"]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hip/Back/LeftArm/LeftUpperArm/StaticBody2D"]
 position = Vector2(-26, 0.5)
@@ -161,6 +160,7 @@ bone_angle = 0.0
 polygon = PackedVector2Array(3, -6, 3, 7, 52, 7, 52, -6)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Hip/Back/RightArm/RightUpperArm"]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hip/Back/RightArm/RightUpperArm/StaticBody2D"]
 position = Vector2(27.5, 0.5)
@@ -173,16 +173,7 @@ auto_calculate_length_and_angle = false
 length = 60.0
 bone_angle = 0.0
 
-[node name="Polygon2D" type="Polygon2D" parent="Hip/Back/RightArm/RightUpperArm/Mop"]
-position = Vector2(-58, 0)
-polygon = PackedVector2Array(57, -5, 57, 6, 144, 2)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Hip/Back/RightArm/RightUpperArm/Mop"]
-position = Vector2(-58, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hip/Back/RightArm/RightUpperArm/Mop/StaticBody2D"]
-position = Vector2(100, 0.5)
-shape = SubResource("RectangleShape2D_4616f")
+[node name="Mop" parent="Hip/Back/RightArm/RightUpperArm/Mop" instance=ExtResource("2_miyk6")]
 
 [node name="PB_Hip" type="PhysicalBone2D" parent="."]
 position = Vector2(0, 48)

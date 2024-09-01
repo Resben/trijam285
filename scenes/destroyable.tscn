@@ -1,10 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://dacinxy0g5s4f"]
+[gd_scene load_steps=4 format=3 uid="uid://dacinxy0g5s4f"]
 
 [ext_resource type="Script" path="res://scenes/destroyable.gd" id="1_ln4rj"]
+[ext_resource type="Texture2D" uid="uid://c68kmabs54e4q" path="res://icon.svg" id="2_5ac3s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mbyg"]
+size = Vector2(128, 128)
 
 [node name="Destroyable" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 3
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("1_ln4rj")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+brokensprite = ExtResource("2_5ac3s")
+sprite = ExtResource("2_5ac3s")
+painted = ExtResource("2_5ac3s")
+painted_and_broken = ExtResource("2_5ac3s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5ac3s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7mbyg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
