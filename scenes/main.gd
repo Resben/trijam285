@@ -1,6 +1,14 @@
 extends Node2D
 
-func _ready()->void:	
+var current_distance = 0
+var distance_since_last_spawn = 0
+var distance_to_next_spawn = 0
+
+var destroyable = preload("res://scenes/destroyable.tscn") as PackedScene
+
+func _ready()->void:
+	current_distance = $Player.global_position.x
+	
 	var modification_stack: SkeletonModificationStack2D = $"Player".get_modification_stack()
 	# Better to enable it at runtime as it makes it harder to interact with in the editor when on
 	modification_stack.enabled = true
@@ -40,7 +48,17 @@ func update_bone(bone: Node2D):
 		bone.freeze = false
 
 func _process(delta):
-	$Ground.global_position.x = $Player.global_position.x
+	$Ground.global_position.x = $Player/Hip.global_position.x
+	
+	if $Player/Hip.global_position.x > current_distance:
+		current_distance = $Player/Hip.global_position.x
+		if distance_to_next_spawn < current_distance:
+			var o = destroyable.instantiate() as RigidBody2D
+			add_child(o)
+			o.global_position = Vector2($Player/Hip.global_position.x + 1400, randi_range(250, 600))
+			distance_to_next_spawn = current_distance + randi_range(150, 600)
 	
 	if Input.is_action_just_pressed("test"):
 		$UI.add_score(50)
+	
+	
