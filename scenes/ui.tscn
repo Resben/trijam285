@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://vje1eler1a26"]
+[gd_scene load_steps=7 format=3 uid="uid://vje1eler1a26"]
 
 [ext_resource type="Script" path="res://scenes/ui.gd" id="1_ate17"]
 [ext_resource type="FontFile" uid="uid://bsebu247j4s1i" path="res://assets/pixelFont.ttf" id="1_tpeng"]
+[ext_resource type="AudioStream" uid="uid://bwcuqbphu3l4l" path="res://assets/SomethingRandom.wav" id="2_soowy"]
 
 [sub_resource type="Theme" id="Theme_si7xp"]
 default_font = ExtResource("1_tpeng")
@@ -15,9 +16,11 @@ font_size = 60
 font_color = Color(0.658824, 0, 0, 1)
 
 [node name="UI" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_ate17")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_soowy")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -56,3 +59,60 @@ offset_bottom = 149.0
 grow_horizontal = 0
 text = "-$0"
 label_settings = SubResource("LabelSettings_0fw5l")
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = -11.5
+offset_right = 27.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.000659168
+theme_override_font_sizes/font_size = 50
+text = "Start
+"
+
+[node name="Label3" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.5
+offset_top = -3.0
+offset_right = 67.5
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.719454, 2.55093e-06, 5.77569e-07, 1)
+theme_override_font_sizes/font_size = 25
+text = "Game Over"
+
+[node name="Label4" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.0
+offset_top = 36.5
+offset_right = 141.0
+offset_bottom = 59.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.717647, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Caused -$0 in damages goodjob!"
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

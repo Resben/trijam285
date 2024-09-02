@@ -1,14 +1,19 @@
 extends Node2D
 
 var current_distance = 0
-var distance_since_last_spawn = 0
 var distance_to_next_spawn = 0
+var distance_to_next_paint = 0
 
 var destroyable = preload("res://scenes/destroyable.tscn") as PackedScene
+var paint = preload("res://scenes/paint_bucket.tscn") as PackedScene
 
 var items = [
 	preload("res://resources/p1.tres"),
 	preload("res://resources/p2.tres")
+]
+
+var colors = [
+	"red", "green", "purple"
 ]
 
 func _ready()->void:
@@ -66,6 +71,16 @@ func _process(delta):
 			add_child(o)
 			o.global_position = Vector2($Player/Hip.global_position.x + 1400, randi_range(250, 600))
 			distance_to_next_spawn = current_distance + randi_range(150, 600)
+			
+		if distance_to_next_paint < current_distance:
+			var o = paint.instantiate() as Area2D
+			
+			var rand_item = randi_range(0, colors.size() - 1)
+			o.color = colors[rand_item]
+			
+			add_child(o)
+			o.global_position = Vector2($Player/Hip.global_position.x + 1400, randi_range(560, 630))
+			distance_to_next_paint = current_distance + randi_range(2000, 2500)
 	
 	if Input.is_action_just_pressed("test"):
 		$UI.add_score(50)

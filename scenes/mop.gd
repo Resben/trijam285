@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Area2D
 
 @export var mop : Texture2D
 @export var mop_green : Texture2D

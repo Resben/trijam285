@@ -12,12 +12,13 @@ func _ready():
 
 func _on_body_entered(body : Node2D):
 	var type = "hit"
-	if body.has_method("get_type"):
-		if body.get_type() == "paint":
+	if body.has_method("is_mop"):
+		if body.p.get_type() == "paint":
+			print("here")
 			if !is_painted:
-				body.painted()
-				change_texture()
+				body.p.painted()
 				is_painted = true
+				change_texture()
 				get_node("/root/Main/UI").add_score(50)
 	
 	gravity_scale = 1
